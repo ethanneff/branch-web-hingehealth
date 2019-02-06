@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <title>Hinge Health</title>
+
+  <!-- meta -->
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='chrome=1'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hinge Health download page">
+
+  <!-- styles -->
+  <style type='text/css' media='screen'>
+    * { margin: 0; padding: 0; box-sizing: border-box; color: #303030; background-color: #ffffff; text-align: center; border: none; text-overflow: ellipsis; word-wrap: break-word; white-space: normal; }
+    section { width: 90%; max-width: 35em;  margin: 0 auto;  }
+    fieldset { border: 0.3em solid #f5f5f5; }
+    legend { padding: 1em; }
+    body { border-top: 0.5em solid #303030; }
+    button, input, p { padding: 1em; margin: 0.5em auto; width: 90%; font-size: 1em; }
+    button, button span { background-color: #f5f5f5; overflow: hidden; }
+    a { text-decoration: none; color: #03a9f4; }
+    footer p { padding: 0; }
+  </style>
+</head>
+<body>
+  <!-- content -->
+  <div class='container'>
+    <header>
+      <h1>Hinge Health</h1>
+    </header>
+    <section>
+      <fieldset>
+        <legend><h3>Download the app</h3></legend>
+        <input type='text' placeholder='phone number' id='phone'>
+        <button type='button' id='sms'>Text me the link</button>
+      </fieldset> 
+    </section>
+    <footer>
+      <p><small>&mdash; <a href='https://github.com/ethanneff/hingehealth-web'>view the code</a> &mdash;</small></p>
+    </footer>
+  </div>
+
+  <!-- branch -->
+  <script type='text/javascript'>
+    // cache DOM
+    document.getElementById('sms').addEventListener('click', linkSms);
+
+    // branch import
+    (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+
+    // branch init
+    branch.init('key_live_lpUgJScxh1z1FC9oKXcWziiiFwpaB7UY');
+    
+    function linkSms() {
+      var phone = phoneNumber.value.replace(/\D/g,'') || 'blank';
+      var linkOptions = { 
+        make_new_link: true
+      };
+      var linkData = {
+        tags: [ 'tag1', 'tag2' ],
+        channel: 'facebook',
+        feature: 'dashboard',
+        stage: 'new user',
+        alias: '',
+        data: {
+          'custom_bool': true,
+          'custom_int': 123,
+          'custom_string': 'hello',
+          '$og_title': Date.now(),
+          '$og_description': 'Description',
+          '$deeplink_path': 'us/store/8333',
+          '$og_image_url':'http://lorempixel.com/400/400'
+        }
+      };
+      
+      branch.sendSMS(phone, linkData, linkOptions, function(err, link) { 
+        console.log(err); 
+      });
+    }
+  </script>
+</body>
+</html>
